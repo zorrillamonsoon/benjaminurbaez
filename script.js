@@ -71,9 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (nav) {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 100) {
-        nav.style.background = 'rgba(13, 11, 10, 0.95)';
+        nav.style.background = 'rgba(232, 220, 214, 0.95)';
       } else {
-        nav.style.background = 'linear-gradient(to bottom, rgba(13, 11, 10, 1) 0%, transparent 100%)';
+        nav.style.background = 'linear-gradient(to bottom, rgba(232, 220, 214, 1) 0%, transparent 100%)';
       }
     });
   }
