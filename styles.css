@@ -1,0 +1,752 @@
+/* Benjamin Urbaez - Sacred Earth Editorial */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+
+:root {
+  /* Sacred Earth Palette */
+  --black: #0D0B0A;
+  --burgundy: #722F37;
+  --burgundy-light: #8B4049;
+  --brown: #4A3728;
+  --brown-light: #5E4A3A;
+  --grey: #6B6B6B;
+  --grey-warm: #7A7268;
+  --cream: #E8E0D5;
+  --cream-muted: #C4B8A8;
+
+  /* Typography */
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Cormorant Garamond', serif;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+  --space-2xl: 12rem;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--cream);
+  background-color: var(--black);
+  min-height: 100vh;
+  overflow-x: hidden;
+  letter-spacing: 0.02em;
+}
+
+::selection {
+  background: var(--burgundy);
+  color: var(--cream);
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  color: var(--cream-muted);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  letter-spacing: 0.2em;
+}
+
+p {
+  max-width: 65ch;
+}
+
+a {
+  color: var(--cream);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--burgundy-light);
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.container--wide {
+  max-width: 1600px;
+}
+
+.container--narrow {
+  max-width: 900px;
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: var(--space-md) 0;
+  background: linear-gradient(to bottom, var(--black) 0%, transparent 100%);
+}
+
+.nav__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.nav__links {
+  display: flex;
+  gap: var(--space-lg);
+  list-style: none;
+}
+
+.nav__link {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--burgundy);
+  transition: width 0.4s ease;
+}
+
+.nav__link:hover::after,
+.nav__link.active::after {
+  width: 100%;
+}
+
+.nav__link.active {
+  color: var(--burgundy-light);
+}
+
+/* Mobile Nav Toggle */
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-xs);
+}
+
+.nav__toggle span {
+  width: 24px;
+  height: 1px;
+  background: var(--cream);
+  transition: all 0.3s ease;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: var(--space-xl);
+  position: relative;
+}
+
+.hero__background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  filter: grayscale(20%);
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--black) 0%,
+    rgba(13, 11, 10, 0.7) 40%,
+    rgba(13, 11, 10, 0.3) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__title {
+  margin-bottom: var(--space-md);
+}
+
+.hero__subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  color: var(--cream-muted);
+  text-transform: none;
+}
+
+/* Page Header */
+.page-header {
+  padding-top: calc(var(--space-xl) + 80px);
+  padding-bottom: var(--space-lg);
+}
+
+.page-header__title {
+  margin-bottom: var(--space-sm);
+}
+
+.page-header__line {
+  width: 60px;
+  height: 1px;
+  background: var(--burgundy);
+}
+
+/* Sections */
+.section {
+  padding: var(--space-xl) 0;
+}
+
+.section--burgundy {
+  background: var(--burgundy);
+}
+
+.section--brown {
+  background: var(--brown);
+}
+
+.section__header {
+  margin-bottom: var(--space-lg);
+}
+
+.section__title {
+  margin-bottom: var(--space-sm);
+}
+
+.section__line {
+  width: 40px;
+  height: 1px;
+  background: var(--burgundy);
+}
+
+/* Grid Layouts */
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--asymmetric {
+  grid-template-columns: 1fr 1.5fr;
+}
+
+/* Content Blocks */
+.content-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.content-block--reverse {
+  direction: rtl;
+}
+
+.content-block--reverse > * {
+  direction: ltr;
+}
+
+.content-block__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.content-block__image {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.content-block__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(10%);
+  transition: filter 0.6s ease, transform 0.6s ease;
+}
+
+.content-block__image:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
+/* Cards */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.card__image {
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  background: var(--brown);
+}
+
+.card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%);
+  transition: filter 0.4s ease, transform 0.6s ease;
+}
+
+.card:hover .card__image img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.card__meta {
+  font-size: 0.875rem;
+  color: var(--grey-warm);
+  font-style: italic;
+}
+
+/* Music List */
+.music-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.music-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(114, 47, 55, 0.3);
+  transition: background 0.3s ease;
+}
+
+.music-item:hover {
+  background: rgba(114, 47, 55, 0.1);
+  margin: 0 calc(var(--space-md) * -1);
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+.music-item__number {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--grey);
+}
+
+.music-item__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.music-item__year {
+  font-size: 0.875rem;
+  color: var(--grey-warm);
+  font-style: italic;
+}
+
+/* Collaborations */
+.collab {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  background: rgba(74, 55, 40, 0.2);
+  transition: background 0.3s ease;
+}
+
+.collab:hover {
+  background: rgba(74, 55, 40, 0.4);
+}
+
+.collab__artist {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+.collab__description {
+  font-size: 0.875rem;
+  color: var(--cream-muted);
+  font-style: italic;
+}
+
+/* Tour Dates */
+.tour-item {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(114, 47, 55, 0.2);
+}
+
+.tour-item__date {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--burgundy-light);
+}
+
+.tour-item__venue {
+  font-size: 1rem;
+}
+
+.tour-item__city {
+  font-size: 0.875rem;
+  color: var(--grey-warm);
+  font-style: italic;
+  text-align: right;
+}
+
+/* Quote Block */
+.quote {
+  padding: var(--space-lg);
+  background: rgba(114, 47, 55, 0.15);
+  position: relative;
+}
+
+.quote::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 6rem;
+  color: var(--burgundy);
+  opacity: 0.3;
+  position: absolute;
+  top: -1rem;
+  left: var(--space-md);
+  line-height: 1;
+}
+
+.quote__text {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+.quote__attribution {
+  margin-top: var(--space-md);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream-muted);
+}
+
+/* Contact Form */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.contact-block__label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--burgundy-light);
+}
+
+.contact-block__value {
+  font-size: 1.125rem;
+}
+
+.contact-block__value a {
+  transition: color 0.3s ease;
+}
+
+.contact-block__value a:hover {
+  color: var(--burgundy-light);
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.social-link {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(114, 47, 55, 0.2);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.social-link:hover {
+  background: var(--burgundy);
+  color: var(--cream);
+}
+
+/* Instagram Embed Container */
+.instagram-embed {
+  background: rgba(74, 55, 40, 0.15);
+  padding: var(--space-md);
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.instagram-embed iframe {
+  max-width: 100%;
+}
+
+/* Footer */
+.footer {
+  padding: var(--space-lg) 0;
+  border-top: 1px solid rgba(114, 47, 55, 0.2);
+  margin-top: var(--space-xl);
+}
+
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__logo {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.footer__links {
+  display: flex;
+  gap: var(--space-md);
+  list-style: none;
+}
+
+.footer__link {
+  font-size: 0.875rem;
+  color: var(--grey-warm);
+}
+
+.footer__link:hover {
+  color: var(--cream);
+}
+
+.footer__copy {
+  font-size: 0.75rem;
+  color: var(--grey);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-delay-1 { animation-delay: 0.1s; opacity: 0; }
+.animate-delay-2 { animation-delay: 0.2s; opacity: 0; }
+.animate-delay-3 { animation-delay: 0.3s; opacity: 0; }
+.animate-delay-4 { animation-delay: 0.4s; opacity: 0; }
+.animate-delay-5 { animation-delay: 0.5s; opacity: 0; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .grid--2, .grid--3 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid--asymmetric {
+    grid-template-columns: 1fr;
+  }
+
+  .content-block {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .content-block--reverse {
+    direction: ltr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --space-lg: 3rem;
+    --space-xl: 5rem;
+  }
+
+  .nav__links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: var(--black);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-lg);
+    transition: right 0.4s ease;
+  }
+
+  .nav__links.active {
+    right: 0;
+  }
+
+  .nav__link {
+    font-size: 1rem;
+  }
+
+  .nav__toggle {
+    display: flex;
+    z-index: 101;
+  }
+
+  .nav__toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .nav__toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav__toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  .tour-item {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+
+  .tour-item__city {
+    text-align: left;
+  }
+
+  .music-item {
+    grid-template-columns: auto 1fr;
+  }
+
+  .music-item__year {
+    grid-column: 2;
+  }
+
+  .footer__inner {
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+  }
+}
