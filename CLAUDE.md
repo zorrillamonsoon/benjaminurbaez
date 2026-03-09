@@ -25,13 +25,17 @@ npx serve -l 8080 .
 
 ## Design System
 
-**Colors** (use CSS variables):
-- `--black: #0D0B0A` - primary background
-- `--burgundy: #722F37` - accent, links, decorative lines
-- `--brown: #4A3728` - secondary backgrounds
-- `--cream: #E8E0D5` - primary text
-- `--cream-muted: #C4B8A8` - secondary text
-- Light variants: `--burgundy-light`, `--brown-light`, `--grey-warm`
+**Colors** (use CSS variables — warm amber dark palette inspired by live performance photography):
+- `--bg: #110E0C` - primary background (deep warm black)
+- `--bg-alt: #1A1512` - alternate background
+- `--amber: #C4873B` - primary accent (warm golden, links, decorative lines)
+- `--amber-light: #D4A054` - hover accent
+- `--burgundy: #8B3A3A` - section backgrounds
+- `--burgundy-light: #A85050` - burgundy hover
+- `--brown: #2A1F18` / `--brown-light: #3D2E22` - secondary backgrounds
+- `--cream: #E8DCD0` - primary text
+- `--cream-muted: #B8A898` - secondary text
+- `--text: #E8DCD0` / `--text-muted: #B8A898`
 
 **Typography**:
 - `--font-display` (Cinzel): headings, nav, labels - always uppercase with `letter-spacing: 0.15em+`
@@ -39,7 +43,7 @@ npx serve -l 8080 .
 
 **Spacing**: `--space-xs` through `--space-2xl` (0.5rem to 12rem)
 
-**Rules**: No white backgrounds, no box-shadows, no borders (except 1px decorative lines in burgundy)
+**Rules**: No white backgrounds, no box-shadows, no borders (except 1px decorative lines in amber). Always ensure light text on dark backgrounds for legibility.
 
 ## CSS Architecture
 
@@ -58,4 +62,4 @@ npx serve -l 8080 .
 
 ## Assets
 
-Images in `assets/` folder: `benjaminurbaez_01.jpeg` through `benjaminurbaez_06.jpeg` (plus one `.gif`). Hero uses `_02`, portraits use others contextually.
+Images in `assets/` folder as WebP format. Hero uses `_02`, portraits use others contextually. Originals backed up in `assets/originals-backup/`. Gallery photos in `assets/frominoaphoto/`.
