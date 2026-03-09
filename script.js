@@ -66,15 +66,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Gallery image fade-in on load
+  document.querySelectorAll('.gallery-grid__item img').forEach(img => {
+    if (img.complete) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => img.classList.add('loaded'));
+    }
+  });
+
   // Nav background on scroll
   const nav = document.querySelector('.nav');
   if (nav) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        nav.style.background = 'rgba(232, 220, 214, 0.95)';
-      } else {
-        nav.style.background = 'linear-gradient(to bottom, rgba(232, 220, 214, 1) 0%, transparent 100%)';
-      }
-    });
+    // If nav has sticky class, keep solid background
+    if (!nav.classList.contains('nav--sticky')) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          nav.style.background = 'rgba(232, 220, 214, 0.95)';
+        } else {
+          nav.style.background = 'linear-gradient(to bottom, rgba(232, 220, 214, 1) 0%, transparent 100%)';
+        }
+      });
+    }
   }
 });
